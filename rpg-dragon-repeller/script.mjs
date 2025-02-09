@@ -16,3 +16,10 @@ const weapons = [
     { name: "claw hammer", power: 50 },
     { name: "sword", power: 100 }
 ];
+
+// Monster list with difficulty levels
+const monsters = [
+    { name: "Slime", level: 2, health: 15 },
+    { name: "Fanged Beast", level: 8, health: 60 },
+    { name: "Dragon", level: 20, health: 300 }
+];
