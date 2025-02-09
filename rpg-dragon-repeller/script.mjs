@@ -77,3 +77,26 @@ const locations = [
         text: "You found a secret game. Pick a number above!"
     }
 ];
+
+// initialize buttons
+    path.clickOn("#btn-store", goStore);
+    path.clickOn("#btn-cave", goCave);
+    path.clickOn("#btn-dragon", fightDragon);
+
+// Updates the game UI when moving to a new location.
+function update(location) {
+    path.setMonsterCSS("display", "none");
+    $("#btn-store").text(location["btnText"][0]);
+    $("#btn-cave").text(location["btnText"][1]);
+    $("#btn-dragon").text(location["btnText"][2]);
+
+    $("#btn-store").off("click");
+    $("#btn-cave").off("click");
+    $("#btn-dragon").off("click");
+
+    path.clickOn("#btn-store", location["btnFunctions"][0]);
+    path.clickOn("#btn-cave", location["btnFunctions"][1]);
+    path.clickOn("#btn-dragon", location["btnFunctions"][2]);
+
+    path.setDescriptionText(location.text);
+}

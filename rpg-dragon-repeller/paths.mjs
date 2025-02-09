@@ -1,5 +1,9 @@
 // This module contains utility functions for updating the game UI.
 
+export function clickOn(element, func) {
+    $(element).on("click", func);
+}
+
 export function setDescriptionText(text) {
     $("#text").text(text);
 }
