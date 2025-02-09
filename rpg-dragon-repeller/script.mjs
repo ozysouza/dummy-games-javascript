@@ -186,3 +186,23 @@ function isMonsterHit() {
 function dodge() {
     path.setDescriptionText(`You dodge the attack from the ${monster[fighting].name}.`);  // Inform the player they dodged the attack.
 }
+
+// This function handles the monster being defeated and rewards the player with gold and XP.
+function defeatMonster() {
+    gold += Math.floor(monster[fighting].level * 6.7);  // Add gold based on monster's level.
+    xp += monster[fighting].level;  // Add XP based on monster's level.
+    path.setGoldText(gold);  // Update the gold display.
+    path.setXpText(xp);  // Update the XP display.
+    update(locations[4]);  // Update the game path to the "defeat" location.
+}
+
+// This function handles the scenario when the player loses the game.
+function lose() {
+    path.setHealthText("💀");  // Display a skull to indicate death.
+    update(locations[5]);  // Update the game path to the "lose" location.
+}
+
+// This function handles the scenario when the player wins the game.
+function winGame() {
+    update(locations[6]);  // Update the game path to the "win" location.
+}
