@@ -101,6 +101,56 @@ function update(location) {
     path.setDescriptionText(location.text);
 }
 
+// This function handles the process of buying a new weapon if the player has enough gold and isn't already holding the most powerful weapon.
+function buyWeapon() {
+    if (currentWeapon < weapons.length - 1) {  // Check if the player doesn't have the most powerful weapon.
+        if (gold >= 30) {  // Check if the player has enough gold (30) to buy a weapon.
+            gold -= 30;  // Deduct 30 gold from the player's balance.
+            currentWeapon++;  // Move to the next weapon in the inventory.
+            let newWeapon = weapons[currentWeapon].name;  // Get the name of the newly purchased weapon.
+            path.setGoldText(gold);  // Update the gold display.
+            invetory.push(newWeapon);  // Add the new weapon to the inventory.
+            path.setDescriptionText(`You now have a new ${newWeapon}.
+                In your inventory you have: ${invetory}`);  // Inform the player about the new weapon and update the inventory.
+        }
+        else {
+            path.setDescriptionText("You do not have enough gold to buy Weapon.");  // Inform the player if they don't have enough gold.
+        }
+    }
+    else {
+        path.setDescriptionText("You already have the most powerful Weapon.");  // Inform the player if they already own the most powerful weapon.
+        $("#btn-cave").text("Sell weapon for 15 gold");  // Change the button text to indicate they can sell the weapon instead.
+        path.clickOn("#btn-cave", sellWeapon);  // Add a click event to sell the weapon for gold.
+    }
+}
+
+// This function allows the player to sell a weapon from their inventory for gold, if they have more than one weapon.
+function sellWeapon() {
+    if (invetory.length > 1) {  // Check if the player has more than one weapon to sell.
+        gold += 15;  // Add 15 gold to the player's balance for selling the weapon.
+        path.setGoldText(gold);  // Update the gold display.
+        let currentWeapon = invetory.shift();  // Remove the first weapon from the inventory (sell it).
+        path.setDescriptionText(`You sold a ${currentWeapon}.`);  // Inform the player that they sold a weapon.
+    }
+    else {
+        path.setDescriptionText("Don't sell your only weapon!");  // Inform the player they can't sell their only weapon.
+    }
+}
+
+// This function allows the player to buy health, if they have enough gold to do so.
+function buyHealth() {
+    if (gold >= 10) {  // Check if the player has enough gold (10) to buy health.
+        gold -= 10;  // Deduct 10 gold from the player's balance.
+        health += 10;  // Add 10 health to the player's total.
+        path.setHealthText(health);  // Update the health display.
+        path.setGoldText(gold);  // Update the gold display.
+        path.setDescriptionText("You bought 10 Health.");  // Inform the player they bought health.
+    }
+    else {
+        path.setDescriptionText("You do not have enough gold to buy Health.");  // Inform the player if they don't have enough gold.
+    }
+}
+
 function goStore() {
     update(locations[1]);
 }
