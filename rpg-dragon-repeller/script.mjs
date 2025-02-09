@@ -181,24 +181,24 @@ function fightDragon() {
 // This function begins a fight with a monster, updating the game state and UI with relevant information.
 function goFight() {
     update(locations[3]);  // Update the game path to the "fight" location.
-    monsterHealth = monster[fighting].health;  // Get the monster's initial health.
+    monsterHealth = monsters[fighting].health;  // Get the monster's initial health.
     path.setMonsterCSS("display", "block");  // Make the monster visible on the screen.
-    path.setMonsterName(monster[fighting].name);  // Display the monster's name.
-    path.setMonsterHealth(monster[fighting].health);  // Display the monster's health.
+    path.setMonsterName(monsters[fighting].name);  // Display the monster's name.
+    path.setMonsterHealth(monsters[fighting].health);  // Display the monster's health.
 }
 
 // This function executes an attack during the player's turn.
 function attack() {
-    path.setDescriptionText(`The ${monster[fighting].name} attacks.`);  // Describe the monster's attack.
+    path.setDescriptionText(`The ${monsters[fighting].name} attacks.`);  // Describe the monster's attack.
     path.setDescriptionAppend(`You will attack it with your ${weapons[currentWeapon].name}.`);  // Describe the player's weapon.
 
     // Check if the player's attack hits the monster.
     if (isMonsterHit()) {
-        health -= getMonsterAttackValue(monster[fighting].level);  // Subtract health if hit.
+        health -= getMonsterAttackValue(monsters[fighting].level);  // Subtract health if hit.
         monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;  // Subtract monster health if hit.
     }
     else {
-        health -= getMonsterAttackValue(monster[fighting].level);  // Subtract health if the attack misses.
+        health -= getMonsterAttackValue(monsters[fighting].level);  // Subtract health if the attack misses.
         path.setDescriptionText("You miss.");  // Inform the player they missed.
     }
 
@@ -223,7 +223,6 @@ function attack() {
 // This function calculates the monster's attack value based on its level.
 function getMonsterAttackValue(level) {
     let hit = (level * 5) - (Math.floor(Math.random() * xp));  // Calculate the hit value.
-    console.log(hit);  // Log the value for debugging.
     return hit;  // Return the calculated hit value.
 }
 
@@ -234,13 +233,13 @@ function isMonsterHit() {
 
 // This function handles the scenario when the player dodges an attack.
 function dodge() {
-    path.setDescriptionText(`You dodge the attack from the ${monster[fighting].name}.`);  // Inform the player they dodged the attack.
+    path.setDescriptionText(`You dodge the attack from the ${monsters[fighting].name}.`);  // Inform the player they dodged the attack.
 }
 
 // This function handles the monster being defeated and rewards the player with gold and XP.
 function defeatMonster() {
-    gold += Math.floor(monster[fighting].level * 6.7);  // Add gold based on monster's level.
-    xp += monster[fighting].level;  // Add XP based on monster's level.
+    gold += Math.floor(monsters[fighting].level * 6.7);  // Add gold based on monster's level.
+    xp += monsters[fighting].level;  // Add XP based on monster's level.
     path.setGoldText(gold);  // Update the gold display.
     path.setXpText(xp);  // Update the XP display.
     update(locations[4]);  // Update the game path to the "defeat" location.
