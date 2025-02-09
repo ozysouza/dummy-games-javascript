@@ -227,12 +227,12 @@ function easterEgg() {
 
 // This function triggers the "pick" function with a guess of 2.
 function pickTwo() {
-    pick(2);  // Pick the number 2 in the pick function.
+    pick(2);
 }
 
 // This function triggers the "pick" function with a guess of 8.
 function pickEight() {
-    pick(8);  // Pick the number 8 in the pick function.
+    pick(8);
 }
 
 // This function executes a number guessing game and rewards or punishes the player.
