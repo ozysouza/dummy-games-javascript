@@ -100,3 +100,15 @@ function update(location) {
 
     path.setDescriptionText(location.text);
 }
+
+function goStore() {
+    update(locations[1]);
+}
+
+function goCave() {
+    update(locations[2]);
+}
+
+function goTown() {
+    update(locations[0]);
+}
