@@ -206,3 +206,16 @@ function lose() {
 function winGame() {
     update(locations[6]);  // Update the game path to the "win" location.
 }
+
+// This function restarts the game, resetting all stats to their initial values.
+function restart() {
+    xp = 0;  // Reset XP to 0.
+    health = 100;  // Reset health to 100.
+    gold = 50;  // Reset gold to 50.
+    currentWeapon = 0;  // Reset the current weapon to the first weapon.
+    invetory = ["stick"];  // Reset the inventory to just a stick.
+    path.setGoldText(gold);  // Update the gold display.
+    path.setHealthText(health);  // Update the health display.
+    path.setXpText(xp);  // Update the XP display.
+    location.reload();  // Reload the game to restart.
+}
