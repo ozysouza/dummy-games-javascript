@@ -219,3 +219,41 @@ function restart() {
     path.setXpText(xp);  // Update the XP display.
     location.reload();  // Reload the game to restart.
 }
+
+function easterEgg() {
+    update(locations[7]);
+}
+
+function pickTwo() {
+    pick(2);
+}
+
+function pickEight() {
+    pick(8);
+}
+
+function pick(guess) {
+    let numbers = [];
+    path.setDescriptionText(`You picked ${guess}. \nHere are the random numbers: `);
+
+    for (let index = 0; index < 10; index++) {
+        numbers.push(Math.floor(Math.random() * 11));
+        path.setDescriptionAppend(`${numbers[index]}, `);
+
+    }
+    if (numbers.indexOf(guess) !== -1) {
+        path.setDescriptionAppend("Right! You win 20 gold!");
+        gold += 20;
+        path.setGoldText(gold);
+
+    }
+    else {
+        path.setDescriptionAppend("Wrong! You lose 10 health!"); 
+        health -= 10;
+        path.setHealthText(health); 
+
+        if (health <= 0) {
+            lose();
+        }
+    }
+}
