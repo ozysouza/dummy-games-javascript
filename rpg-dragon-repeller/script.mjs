@@ -220,40 +220,46 @@ function restart() {
     location.reload();  // Reload the game to restart.
 }
 
+// This function activates an easter egg event in the game.
 function easterEgg() {
-    update(locations[7]);
+    update(locations[7]);  // Update the game path to the "easter egg" location.
 }
 
+// This function triggers the "pick" function with a guess of 2.
 function pickTwo() {
-    pick(2);
+    pick(2);  // Pick the number 2 in the pick function.
 }
 
+// This function triggers the "pick" function with a guess of 8.
 function pickEight() {
-    pick(8);
+    pick(8);  // Pick the number 8 in the pick function.
 }
 
+// This function executes a number guessing game and rewards or punishes the player.
 function pick(guess) {
-    let numbers = [];
-    path.setDescriptionText(`You picked ${guess}. \nHere are the random numbers: `);
+    let numbers = [];  // Initialize an empty array to store random numbers.
+    path.setDescriptionText(`You picked ${guess}. \nHere are the random numbers: `);  // Inform the player about their guess.
 
+    // Generate 10 random numbers between 0 and 10.
     for (let index = 0; index < 10; index++) {
-        numbers.push(Math.floor(Math.random() * 11));
-        path.setDescriptionAppend(`${numbers[index]}, `);
-
+        numbers.push(Math.floor(Math.random() * 11));  // Push each random number into the array.
+        path.setDescriptionAppend(`${numbers[index]}, `);  // Display each number.
     }
-    if (numbers.indexOf(guess) !== -1) {
-        path.setDescriptionAppend("Right! You win 20 gold!");
-        gold += 20;
-        path.setGoldText(gold);
 
+    // Check if the guessed number is in the generated numbers array.
+    if (numbers.indexOf(guess) !== -1) {
+        path.setDescriptionAppend("Right! You win 20 gold!");  // If correct, award 20 gold.
+        gold += 20;  // Increase gold by 20.
+        path.setGoldText(gold);  // Update the gold display.
     }
     else {
-        path.setDescriptionAppend("Wrong! You lose 10 health!");
-        health -= 10;
-        path.setHealthText(health);
+        path.setDescriptionAppend("Wrong! You lose 10 health!");  // If incorrect, lose 10 health.
+        health -= 10;  // Subtract 10 from health.
+        path.setHealthText(health);  // Update the health display.
 
+        // Check if health drops to 0 or below, triggering a loss.
         if (health <= 0) {
-            lose();
+            lose();  // Player loses if health reaches 0.
         }
     }
 }
