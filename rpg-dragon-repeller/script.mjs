@@ -1,5 +1,7 @@
 // This script controls the game's logic, including character stats, navigation, combat, and inventory.
 
+import * as path from "./paths.mjs";  // Importing UI update functions
+
 // Player's starting stats
 let xp = 0;
 let health = 100;
