@@ -127,3 +127,45 @@ function fightDragon() {
     fighting = 2;
     goFight();
 }
+
+// This function begins a fight with a monster, updating the game state and UI with relevant information.
+function goFight() {
+    update(locations[3]);  // Update the game path to the "fight" location.
+    monsterHealth = monster[fighting].health;  // Get the monster's initial health.
+    path.setMonsterCSS("display", "block");  // Make the monster visible on the screen.
+    path.setMonsterName(monster[fighting].name);  // Display the monster's name.
+    path.setMonsterHealth(monster[fighting].health);  // Display the monster's health.
+}
+
+// This function executes an attack during the player's turn.
+function attack() {
+    path.setDescriptionText(`The ${monster[fighting].name} attacks.`);  // Describe the monster's attack.
+    path.setDescriptionAppend(`You will attack it with your ${weapons[currentWeapon].name}.`);  // Describe the player's weapon.
+
+    // Check if the player's attack hits the monster.
+    if (isMonsterHit()) {
+        health -= getMonsterAttackValue(monster[fighting].level);  // Subtract health if hit.
+        monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;  // Subtract monster health if hit.
+    }
+    else {
+        health -= getMonsterAttackValue(monster[fighting].level);  // Subtract health if the attack misses.
+        path.setDescriptionText("You miss.");  // Inform the player they missed.
+    }
+
+    path.setMonsterHealth(monsterHealth);  // Update monster's health in the UI.
+    path.setHealthText(health);  // Update player's health in the UI.
+
+    // Check if the player or the monster has been defeated.
+    if (health <= 0) {
+        lose();  // Player loses.
+    }
+    else if (monsterHealth <= 0) {
+        fighting === 2 ? winGame() : defeatMonster();  // If monster is defeated, check if it's the last monster.
+    }
+
+    // Randomly check if the player's weapon breaks.
+    if (Math.random() <= .1 && invetory.length !== 1) {
+        path.setDescriptionAppend(`Your ${invetory.pop()} broke!`);  // Notify the player their weapon broke.
+        currentWeapon--;  // Switch to the previous weapon in the inventory.
+    }
+}
