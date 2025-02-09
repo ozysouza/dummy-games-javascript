@@ -169,3 +169,20 @@ function attack() {
         currentWeapon--;  // Switch to the previous weapon in the inventory.
     }
 }
+
+// This function calculates the monster's attack value based on its level.
+function getMonsterAttackValue(level) {
+    let hit = (level * 5) - (Math.floor(Math.random() * xp));  // Calculate the hit value.
+    console.log(hit);  // Log the value for debugging.
+    return hit;  // Return the calculated hit value.
+}
+
+// This function checks if the monster's attack hits the player.
+function isMonsterHit() {
+    return Math.random() > .2 || health < 20;  // If random chance is greater than 0.2 or player health is low, the attack hits.
+}
+
+// This function handles the scenario when the player dodges an attack.
+function dodge() {
+    path.setDescriptionText(`You dodge the attack from the ${monster[fighting].name}.`);  // Inform the player they dodged the attack.
+}
