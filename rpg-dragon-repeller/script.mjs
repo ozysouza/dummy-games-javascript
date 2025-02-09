@@ -79,9 +79,9 @@ const locations = [
 ];
 
 // initialize buttons
-    path.clickOn("#btn-store", goStore);
-    path.clickOn("#btn-cave", goCave);
-    path.clickOn("#btn-dragon", fightDragon);
+path.clickOn("#btn-store", goStore);
+path.clickOn("#btn-cave", goCave);
+path.clickOn("#btn-dragon", fightDragon);
 
 // Updates the game UI when moving to a new location.
 function update(location) {
@@ -248,9 +248,9 @@ function pick(guess) {
 
     }
     else {
-        path.setDescriptionAppend("Wrong! You lose 10 health!"); 
+        path.setDescriptionAppend("Wrong! You lose 10 health!");
         health -= 10;
-        path.setHealthText(health); 
+        path.setHealthText(health);
 
         if (health <= 0) {
             lose();
