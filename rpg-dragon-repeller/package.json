@@ -1,0 +1,17 @@
+{
+  "name": "rpg-dragon-repeller",
+  "version": "1.0.0",
+  "description": "This is a RPG Game.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oziel De Souza",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "jquery": "^3.7.1",
+    "nodemon": "^3.1.9"
+  }
+}
