@@ -8,3 +8,11 @@ let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let invetory = ["stick"];
+
+// Weapon list with attack power
+const weapons = [
+    { name: "stick", power: 5 },
+    { name: "dagger", power: 30 },
+    { name: "claw hammer", power: 50 },
+    { name: "sword", power: 100 }
+];
